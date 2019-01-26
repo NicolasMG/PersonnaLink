@@ -17,11 +17,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private List<PersonnaModel> personnaModelList;
     private View.OnLongClickListener longClickListener;
+    private View.OnClickListener clickListener;
 
-    public RecyclerViewAdapter(List<PersonnaModel> personnaModelList, View.OnLongClickListener longClickListener) {
+    public RecyclerViewAdapter(List<PersonnaModel> personnaModelList, View.OnLongClickListener longClickListener, View.OnClickListener clickListener) {
         this.personnaModelList = personnaModelList;
         this.longClickListener = longClickListener;
+        this.clickListener = clickListener;
     }
+
+
 
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -53,6 +57,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.dateTextView.setText(personnaModel.getPersonnaDate().toLocaleString().substring(0, 11));
         holder.itemView.setTag(personnaModel);
         holder.itemView.setOnLongClickListener(longClickListener);
+        holder.itemView.setOnClickListener(clickListener);
 
     }
 

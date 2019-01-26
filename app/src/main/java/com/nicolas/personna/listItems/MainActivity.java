@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.nicolas.personna.ModifPersonna.ModifPersonna;
 import com.nicolas.personna.R;
 import com.nicolas.personna.addItem.AddPersonna;
 import com.nicolas.personna.db.PersonnaModel;
@@ -18,7 +19,7 @@ import com.nicolas.personna.db.PersonnaModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnLongClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnLongClickListener, View.OnClickListener {
 
     private PersonnaListViewModel viewModel;
     private RecyclerViewAdapter recyclerViewAdapter;
@@ -28,7 +29,9 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         getBaseContext().deleteDatabase("personna_db");
+
         setContentView(R.layout.activity_main);
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
 
 
         recyclerView = findViewById(R.id.recyclerView);
-        recyclerViewAdapter = new RecyclerViewAdapter(new ArrayList<PersonnaModel>(), this);
+        recyclerViewAdapter = new RecyclerViewAdapter(new ArrayList<PersonnaModel>(), this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         recyclerView.setAdapter(recyclerViewAdapter);
@@ -62,5 +65,13 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         PersonnaModel personnaModel = (PersonnaModel) v.getTag();
         viewModel.deleteItem(personnaModel);
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        PersonnaModel personnaModel = (PersonnaModel) v.getTag();
+        startActivity(new Intent(MainActivity.this, ModifPersonna.class)
+                .putExtra("PersonnaID",personnaModel.id)
+        );
     }
 }

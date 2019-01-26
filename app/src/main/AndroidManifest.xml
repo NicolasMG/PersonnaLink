@@ -22,6 +22,10 @@
             android:name="com.nicolas.personna.addItem.AddPersonna"
             android:label="@string/title_activity_add"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.nicolas.personna.ModifPersonna.ModifPersonna"
+            android:label="@string/title_activity_modif"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

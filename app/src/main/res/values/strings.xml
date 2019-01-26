@@ -2,6 +2,7 @@
     <string name="app_name">Personna Link</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_add">Rajouter un personna</string>
+    <string name="title_activity_modif">Modifier un personna</string>
     <string name="item_name">Nom</string>
     <string name="person_name">Prenom</string>
     <string name="set_date">date de naissance</string>
