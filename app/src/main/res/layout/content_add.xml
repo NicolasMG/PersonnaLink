@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="100dp"
-    tools:context="com.nicolas.personna.addItem.AddActivity">
+    tools:context="com.nicolas.personna.addItem.AddPersonna">
 
     <EditText
         android:id="@+id/itemName"

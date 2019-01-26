@@ -12,7 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.nicolas.personna.R;
-import com.nicolas.personna.addItem.AddActivity;
+import com.nicolas.personna.addItem.AddPersonna;
 import com.nicolas.personna.db.PersonnaModel;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, AddActivity.class));
+                startActivity(new Intent(MainActivity.this, AddPersonna.class));
             }
         });
 

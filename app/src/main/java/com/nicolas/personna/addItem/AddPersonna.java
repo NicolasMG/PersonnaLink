@@ -3,7 +3,6 @@ package com.nicolas.personna.addItem;
 import android.app.DatePickerDialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,7 +19,7 @@ import com.nicolas.personna.db.PersonnaModel;
 import java.util.Calendar;
 import java.util.Date;
 
-public class AddActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class AddPersonna extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private Date date;
     private DatePickerDialog datePickerDialog;
@@ -47,7 +46,7 @@ public class AddActivity extends AppCompatActivity implements DatePickerDialog.O
         calendar = Calendar.getInstance();
         addPersonnaViewModel = ViewModelProviders.of(this).get(AddPersonnaViewModel.class);
 
-        datePickerDialog = new DatePickerDialog(this, AddActivity.this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog = new DatePickerDialog(this, AddPersonna.this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +55,7 @@ public class AddActivity extends AppCompatActivity implements DatePickerDialog.O
                 int selected = rg1.getCheckedRadioButtonId();
                 rb1 = (RadioButton)findViewById(selected);
                 if (itemEditText.getText() == null || nameEditText.getText() == null || date == null)
-                    Toast.makeText(AddActivity.this, "Missing fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddPersonna.this, "Missing fields", Toast.LENGTH_SHORT).show();
                 else {
                     addPersonnaViewModel.addPersonna(new PersonnaModel(
                             itemEditText.getText().toString(),
