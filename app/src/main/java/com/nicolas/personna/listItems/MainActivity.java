@@ -15,32 +15,35 @@ import com.nicolas.personna.ModifPersonna.ModifPersonna;
 import com.nicolas.personna.R;
 import com.nicolas.personna.addItem.AddPersonna;
 import com.nicolas.personna.db.PersonnaModel;
+import com.nicolas.personna.nodes.NodesView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnLongClickListener, View.OnClickListener {
 
-    private PersonnaListViewModel viewModel;
-    private RecyclerViewAdapter recyclerViewAdapter;
-    private RecyclerView recyclerView;
+            private PersonnaListViewModel viewModel;
+            private RecyclerViewAdapter recyclerViewAdapter;
+            private RecyclerView recyclerView;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+            @Override
+            protected void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
 
-        getBaseContext().deleteDatabase("personna_db");
+                getBaseContext().deleteDatabase("personna_db");
 
-        setContentView(R.layout.activity_main);
+                setContentView(R.layout.activity_main);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+                FloatingActionButton fab = findViewById(R.id.fab);
+                fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, AddPersonna.class));
             }
         });
+
+        NodesView nodesview = new NodesView();
 
 
         recyclerView = findViewById(R.id.recyclerView);

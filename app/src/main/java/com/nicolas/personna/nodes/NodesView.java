@@ -6,22 +6,20 @@ import android.arch.lifecycle.AndroidViewModel;
 import com.nicolas.personna.db.AppDatabase;
 
 import org.graphstream.graph.Graph;
+import org.graphstream.ui.android_viewer.AndroidViewer;
+import org.graphstream.ui.android_viewer.DefaultView;
+import org.graphstream.ui.graphicGraph.GraphicGraph;
 
-public class NodesView  extends AndroidViewModel {
+public class NodesView {
 
     private AppDatabase appDatabase;
-    private Graph graph;
+    private GraphicGraph graph;
 
-    public NodesView(Application application) {
-        super(application);
-
-
-
-        appDatabase = AppDatabase.getDatabase(this.getApplication());
-
+    public NodesView() {
         Node node = new Node();
-        graph = node.getPraph();
+        graph = node.getGraph();
+
+        AndroidViewer androidViewer = new AndroidViewer(graph);
+
     }
-
 }
-
