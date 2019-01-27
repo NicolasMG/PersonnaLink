@@ -19,6 +19,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private View.OnLongClickListener longClickListener;
     private View.OnClickListener clickListener;
 
+    public List<PersonnaModel> getPersonnaModelList(){
+        return personnaModelList;
+    }
+
     public RecyclerViewAdapter(List<PersonnaModel> personnaModelList, View.OnLongClickListener longClickListener, View.OnClickListener clickListener) {
         this.personnaModelList = personnaModelList;
         this.longClickListener = longClickListener;
@@ -26,8 +30,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
 
-
-    @Override
+        @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new RecyclerViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycler_item, parent, false));

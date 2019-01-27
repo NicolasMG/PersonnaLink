@@ -10,40 +10,52 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 
-import com.nicolas.personna.ModifPersonna.ModifPersonna;
+import com.nicolas.personna.EditPersonna.EditPersonna;
 import com.nicolas.personna.R;
 import com.nicolas.personna.addItem.AddPersonna;
 import com.nicolas.personna.db.PersonnaModel;
-import com.nicolas.personna.nodes.NodesView;
+import com.nicolas.personna.db.PersonnaModelArray;
+import com.nicolas.personna.nodes.NodeViewer;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnLongClickListener, View.OnClickListener {
 
-            private PersonnaListViewModel viewModel;
-            private RecyclerViewAdapter recyclerViewAdapter;
-            private RecyclerView recyclerView;
+    private PersonnaListViewModel viewModel;
+    private RecyclerViewAdapter recyclerViewAdapter;
+    private RecyclerView recyclerView;
+    private PersonnaModelArray personnaModelArray;
+    private Button button;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-            @Override
-            protected void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
+        //getBaseContext().deleteDatabase("personna_db");
 
-                getBaseContext().deleteDatabase("personna_db");
+        setContentView(R.layout.activity_main);
 
-                setContentView(R.layout.activity_main);
-
-                FloatingActionButton fab = findViewById(R.id.fab);
-                fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, AddPersonna.class));
             }
         });
-
-        NodesView nodesview = new NodesView();
+        button = findViewById(R.id.showNodes);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PersonnaModelArray personnaModelArray = new PersonnaModelArray(recyclerViewAdapter.getPersonnaModelList());
+                startActivity(new Intent(MainActivity.this, NodeViewer.class)
+                        .putExtra("PersonnaModelList", personnaModelArray)
+                );
+            }
+        });
 
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -61,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
             }
         });
 
+
     }
 
     @Override
@@ -73,8 +86,10 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     @Override
     public void onClick(View v) {
         PersonnaModel personnaModel = (PersonnaModel) v.getTag();
-        startActivity(new Intent(MainActivity.this, ModifPersonna.class)
-                .putExtra("PersonnaID",personnaModel.id)
+        startActivity(new Intent(MainActivity.this, EditPersonna.class)
+                .putExtra("PersonnaID", personnaModel.id)
+                .putExtra("PersonnaModel", personnaModel)
+
         );
     }
 }

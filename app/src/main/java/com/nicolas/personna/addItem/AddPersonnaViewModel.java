@@ -36,6 +36,5 @@ public class AddPersonnaViewModel extends AndroidViewModel {
             db.itemAndPersonModel().addPersonna(params[0]);
             return null;
         }
-
     }
 }

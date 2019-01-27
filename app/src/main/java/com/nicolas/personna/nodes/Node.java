@@ -8,6 +8,7 @@ import org.graphstream.ui.graphicGraph.GraphicGraph;
 public class Node {
     private GraphicGraph graph;
 
+    //creer le graph
     public Node(){
         GraphicGraph graph = new GraphicGraph("Tutorial 1");
 
@@ -18,7 +19,15 @@ public class Node {
         graph.addEdge("BC", "B", "C");
         graph.addEdge("CA", "C", "A");
         this.graph = graph;
-        }
+        /*
+            graph.setStrict(false);
+            graph.setAutoCreate( true );
+            graph.addEdge( "AB", "A", "B" );
+            graph.addEdge( "BC", "B", "C" );
+            graph.addEdge( "CA", "C", "A" );
+         */
+
+    }
 
 public GraphicGraph getGraph() {
         return graph;

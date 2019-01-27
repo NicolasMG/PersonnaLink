@@ -12,7 +12,6 @@ import org.graphstream.ui.graphicGraph.GraphicGraph;
 
 public class NodesView {
 
-    private AppDatabase appDatabase;
     private GraphicGraph graph;
 
     public NodesView() {
@@ -20,6 +19,6 @@ public class NodesView {
         graph = node.getGraph();
 
         AndroidViewer androidViewer = new AndroidViewer(graph);
-
     }
+
 }

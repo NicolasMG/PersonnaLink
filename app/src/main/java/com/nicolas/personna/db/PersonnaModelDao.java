@@ -6,6 +6,7 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.TypeConverters;
+import android.arch.persistence.room.Update;
 
 import java.util.List;
 
@@ -19,12 +20,14 @@ public interface PersonnaModelDao {
     LiveData<List<PersonnaModel>> getAllPersonnaItems();
 
     @Query("select * from PersonnaModel where id = :id")
-    PersonnaModel getItembyId(String id);
+    LiveData<PersonnaModel> getItembyId(String id);
 
-    @Insert(onConflict = REPLACE)
+@Insert(onConflict = REPLACE)
     void addPersonna(PersonnaModel personnaModel);
 
-    @Delete
+@Delete
     void deletePersonna(PersonnaModel personnaModel);
 
-}
+@Update
+    void editPersonna(PersonnaModel param);
+            }
